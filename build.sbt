@@ -2,17 +2,18 @@ val scala213 = "2.13.11"
 val scala3   = "3.3.0"
 val allScala = Seq(scala213, scala3)
 
-val zioVersion            = "2.0.21"
-val zioGrpcVersion        = "0.6.0"
-val zioK8sVersion         = "2.1.1"
-val zioCacheVersion       = "0.2.3"
-val zioCatsInteropVersion = "23.1.0.0"
-val sttpVersion           = "3.9.3"
-val calibanVersion        = "2.5.3"
-val redis4catsVersion     = "1.5.2"
-val redissonVersion       = "3.27.1"
-val scalaKryoVersion      = "1.0.2"
-val testContainersVersion = "0.41.3"
+val zioVersion             = "2.0.21"
+val zioGrpcVersion         = "0.6.0"
+val zioK8sVersion          = "2.1.1"
+val zioCacheVersion        = "0.2.3"
+val zioCatsInteropVersion  = "23.1.0.0"
+val sttpVersion            = "3.9.3"
+val calibanVersion         = "2.5.3"
+val redis4catsVersion      = "1.5.2"
+val redissonVersion        = "3.27.1"
+val hazelcastClientVersion = "5.0.1"
+val scalaKryoVersion       = "1.0.2"
+val testContainersVersion  = "0.41.3"
 
 inThisBuild(
   List(
@@ -138,6 +139,19 @@ lazy val storageRedisson = project
     libraryDependencies ++=
       Seq(
         "org.redisson" % "redisson" % redissonVersion
+      )
+  )
+
+lazy val storageHazelcase = project
+  .in(file("storage-hazelcast"))
+  .settings(name := "shardcake-storage-hazelcast")
+  .settings(commonSettings)
+  .dependsOn(core)
+  .settings(
+    libraryDependencies ++=
+      Seq(
+        "com.hazelcast"  % "hazelcast"       % hazelcastClientVersion,
+        "ch.qos.logback" % "logback-classic" % "1.4.7"
       )
   )
 
