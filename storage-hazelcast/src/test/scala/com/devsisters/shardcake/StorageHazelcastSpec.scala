@@ -36,7 +36,7 @@ object StorageHazelcastSpec extends ZIOSpecDefault {
     }
 
   def spec: Spec[TestEnvironment with Scope, Any] =
-    suite("StorageRedisSpec")(
+    suite("StorageHazelcastSpec")(
       test("save and get pods") {
         val expected = List(Pod(PodAddress("host1", 1), "1.0.0"), Pod(PodAddress("host2", 2), "2.0.0"))
           .map(p => p.address -> p)
