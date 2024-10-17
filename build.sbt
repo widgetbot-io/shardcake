@@ -56,6 +56,7 @@ lazy val root = project
     healthK8s,
     storageRedis,
     storageRedisson,
+    storageHazelcast,
     serializationKryo,
     grpcProtocol,
     examples
@@ -142,7 +143,7 @@ lazy val storageRedisson = project
       )
   )
 
-lazy val storageHazelcase = project
+lazy val storageHazelcast = project
   .in(file("storage-hazelcast"))
   .settings(name := "shardcake-storage-hazelcast")
   .settings(commonSettings)

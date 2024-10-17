@@ -1,4 +1,4 @@
-package com.devsisters.shardcake
+ package com.devsisters.shardcake
 
 import com.devsisters.shardcake.ShardManager._
 import com.devsisters.shardcake.interfaces._

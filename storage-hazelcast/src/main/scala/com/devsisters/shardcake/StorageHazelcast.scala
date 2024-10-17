@@ -11,7 +11,7 @@ import scala.jdk.CollectionConverters._
 object StorageHazelcast {
 
   /**
-   * A layer that returns a Storage implementation using Redis
+   * A layer that returns a Storage implementation using Hazelcast
    */
   val live: ZLayer[HazelcastInstance with HazelcastConfig, Nothing, Storage] =
     ZLayer {
@@ -67,7 +67,7 @@ object StorageHazelcast {
                 .toMap
             )
         def savePods(pods: Map[PodAddress, Pod]): Task[Unit] =
-          ZIO.attemptBlocking(podsMap.putAll(pods.map { case (k, v) => k.toString -> v.version }.asJava)).unit
+          ZIO.fromCompletionStage(podsMap.putAllAsync(pods.map { case (k, v) => k.toString -> v.version }.asJava)).unit
       }
     }
 }
